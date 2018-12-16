@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Authenticate() {
+        AuthUI i = AuthUI.getInstance();
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
                         .setAvailableProviders(getAuthProviderList())
@@ -48,20 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
     private List<AuthUI.IdpConfig> getAuthProviderList() {
 
-        return Arrays.asList(
-//                new AuthUI.IdpConfig.GoogleBuilder().build(),
-//                new AuthUI.IdpConfig.FacebookBuilder().build(),
-//                new AuthUI.IdpConfig.TwitterBuilder().build(),
-//                new AuthUI.IdpConfig.GitHubBuilder().build(),
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.PhoneBuilder().build()
-//                new AuthUI.IdpConfig.AnonymousBuilder().build()
-        );
+//        return Arrays.asList(
+////                new AuthUI.IdpConfig.GoogleBuilder().build(),
+////                new AuthUI.IdpConfig.FacebookBuilder().build(),
+////                new AuthUI.IdpConfig.TwitterBuilder().build(),
+////                new AuthUI.IdpConfig.GitHubBuilder().build(),
+//                new AuthUI.IdpConfig.EmailBuilder().build()
+////                new AuthUI.IdpConfig.AnonymousBuilder().build()
+//        );
 
-//        List<AuthUI.IdpConfig> providers = new ArrayList<>();
-//        providers.add(
-//                new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_LINK_PROVIDER).build());
-//        return providers;
+        List<AuthUI.IdpConfig> providers = new ArrayList<>();
+        providers.add(
+                new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
+        return providers;
     }
 
     @Override
@@ -78,11 +78,11 @@ public class MainActivity extends AppCompatActivity {
                 // if user cancelled Sign-in
                 return;
             }
-            if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+            if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
                 // When device has no network connection
                 return;
             }
-            if (response.getError().getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+            if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
                 // When unknown error occurred
                 return;
             }
