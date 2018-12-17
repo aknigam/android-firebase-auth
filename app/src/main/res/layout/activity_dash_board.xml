@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context="auth.example.andy.authenticationapp.DashBoardActivity">
 
+    <Button
+        android:id="@+id/firebase_sign_out_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:onClick="signOut"/>
+
 </android.support.constraint.ConstraintLayout>
