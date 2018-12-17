@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Authenticate() {
-        AuthUI i = AuthUI.getInstance();
+
         startActivityForResult(
                 AuthUI.getInstance().createSignInIntentBuilder()
                         .setAvailableProviders(getAuthProviderList())
